@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Article from "../components/Article";
 
 export default function ArticlePage() {
@@ -37,7 +37,11 @@ export default function ArticlePage() {
 
   // Access the article using the `id` from the URL
   const article = articleData[parseInt(id)];
-
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    console.log("hii");
+    navigate(-1); // Navigate back to the previous page
+  };
   return (
     <div>
       <Article
@@ -48,7 +52,7 @@ export default function ArticlePage() {
         source={article.source}
         description={article.description}
       />
-      <button>Go Back</button>
+      <button onClick={handleGoBack}>Go Back</button>
     </div>
   );
 }
