@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NewsCardList from "../components/NewsCardList";
+import Header from "../components/Header";
 
 const HomePage = () => {
   //   const { articles, fetchArticles } = useNewsContext();
@@ -10,6 +11,7 @@ const HomePage = () => {
 
   return (
     <div>
+      <Header />
       <NewsCardList />
     </div>
   );

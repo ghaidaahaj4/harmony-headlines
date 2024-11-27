@@ -1,13 +1,13 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Article from "../components/Article";
-
+import "../components/styles/Article.css";
 export default function ArticlePage() {
   const { id } = useParams(); // Access the `id` parameter from the URL
 
   const articleData = [
     {
-      img: "https://via.placeholder.com/800x400",
+      img: "https://www.w3schools.com/css/paris.jpg",
       title: "Breaking News: React is Awesome!",
       date: "Nov 27, 2024",
       author: "Jane Doe",
