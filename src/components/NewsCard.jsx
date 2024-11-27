@@ -6,18 +6,15 @@ export default function NewsCard({ img, title, date, author, source, id }) {
   return (
     <div className="news-card">
       <Link to={`/article/${id}`} className="news-card-link">
-        {/* Image Section */}
         <img
-          src={img || "https://via.placeholder.com/400"} // Fallback image
+          src={img || "https://via.placeholder.com/400"}
           alt={title}
           className="news-card-img"
         />
-
-        {/* Content Section */}
+        =
         <div className="news-card-content">
           <h3 className="news-card-title">{title}</h3>
 
-          {/* Author and Date */}
           <p className="news-card-details">
             {author ? (
               <span className="news-card-author">{author}</span>
@@ -35,7 +32,6 @@ export default function NewsCard({ img, title, date, author, source, id }) {
             )}
           </p>
 
-          {/* Source */}
           {source && (
             <p className="news-card-source">
               Source: <span>{source}</span>
