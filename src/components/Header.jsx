@@ -3,7 +3,7 @@ import "./styles/Header.css";
 
 export default function Header() {
   const [date, setDate] = useState(new Date());
-  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState("Feed");
 
   const handleClick = (item) => {
     setSelectedItem(item);
@@ -41,7 +41,6 @@ export default function Header() {
         </li>
       </ul>
 
-      {/* Conditionally render content based on the selected item */}
       <div>
         {selectedItem && <h2>You selected: {selectedItem}</h2>}
         {selectedItem === "Feed" && <p>This is the Feed section.</p>}
