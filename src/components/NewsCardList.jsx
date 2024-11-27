@@ -14,7 +14,7 @@ export default function NewsCardList() {
         <NewsCard
           key={index}
           id={index}
-          img={news.image || "https://via.placeholder.com/400"} // Use placeholder if image is missing
+          img={news.image}
           title={news.title}
           date={news.published_at}
           author={news.author || "Unknown"}

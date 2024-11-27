@@ -6,7 +6,7 @@ export function getNews() {
   const params = {
     languages: "en",
     countries: "us,il,ae",
-    access_key: import.meta.env.VITE_MEDIASTACK_API_KEY, // Ensure this is correct
+    access_key: import.meta.env.VITE_MEDIASTACK_API_KEY,
     keywords: "israel,palestine",
     limit: 10,
   };
@@ -41,8 +41,8 @@ export function NewsProvider({ children }) {
 
       const data = await getNews(apiKey);
       if (data?.data) {
-        setNewsData(data.data);
         console.log(data);
+        setNewsData(data.data);
       } else {
         throw new Error("Invalid response format");
       }

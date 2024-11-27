@@ -1,17 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./styles/NewsCard.css";
+import defaultImg from "../assets/defult.png";
 
 export default function NewsCard({ img, title, date, author, source, id }) {
   return (
     <div className="news-card">
       <Link to={`/article/${id}`} className="news-card-link">
-        <img
-          src={img || "https://via.placeholder.com/400"}
-          alt={title}
-          className="news-card-img"
-        />
-        =
+        <img src={img || defaultImg} className="article-img" />
+
         <div className="news-card-content">
           <h3 className="news-card-title">{title}</h3>
 

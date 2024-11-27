@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles/Article.css";
+import defaultImg from "../assets/defult.png";
 
 export default function Article({
   img,
@@ -11,7 +12,8 @@ export default function Article({
 }) {
   return (
     <div className="article">
-      <img src={img} alt={title} className="article-img" />
+      <img src={img || defaultImg} className="article-img" />
+
       <h1 className="article-title">{title}</h1>
       <div className="article-content">
         <p className="article-details">
