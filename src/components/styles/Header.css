@@ -1,0 +1,16 @@
+ul {
+  background-color: aqua;
+  border-radius: 10vh;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  justify-content: space-evenly;
+  overflow-x: scroll;
+  li {
+    border-radius: 10vh;
+    background-color: antiquewhite;
+    width: 25vh;
+    text-align: center;
+  }
+}

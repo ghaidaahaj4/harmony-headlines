@@ -10,7 +10,6 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Latest News</h1>
       <NewsCardList />
     </div>
   );
