@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NewsCardList from "../components/NewsCardList";
 import Header from "../components/Header";
-
+import "./Home.css";
 const HomePage = () => {
   //   const { articles, fetchArticles } = useNewsContext();
 
@@ -10,7 +10,7 @@ const HomePage = () => {
   //   }, []);
 
   return (
-    <div>
+    <div className="home">
       <Header />
       <NewsCardList />
     </div>
