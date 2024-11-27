@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Article from "./Article";
+import Article from "../components/Article";
 
 export default function ArticlePage() {
   const { id } = useParams(); // Access the `id` parameter from the URL
@@ -39,13 +39,16 @@ export default function ArticlePage() {
   const article = articleData[parseInt(id)];
 
   return (
-    <Article
-      img={article.img}
-      title={article.title}
-      date={article.date}
-      author={article.author}
-      source={article.source}
-      description={article.description}
-    />
+    <div>
+      <Article
+        img={article.img}
+        title={article.title}
+        date={article.date}
+        author={article.author}
+        source={article.source}
+        description={article.description}
+      />
+      <button>Go Back</button>
+    </div>
   );
 }
