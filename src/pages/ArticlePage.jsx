@@ -40,7 +40,7 @@ export default function ArticlePage() {
   const navigate = useNavigate();
   const handleGoBack = () => {
     console.log("hii");
-    navigate(-1); // Navigate back to the previous page
+    navigate(-1);
   };
   return (
     <div>
