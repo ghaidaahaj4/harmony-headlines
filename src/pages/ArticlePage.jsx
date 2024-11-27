@@ -1,13 +1,13 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import Article from "./Article";
-
+import { useParams, useNavigate } from "react-router-dom";
+import Article from "../components/Article";
+import "../components/styles/Article.css";
 export default function ArticlePage() {
   const { id } = useParams(); // Access the `id` parameter from the URL
 
   const articleData = [
     {
-      img: "https://via.placeholder.com/800x400",
+      img: "https://www.w3schools.com/css/paris.jpg",
       title: "Breaking News: React is Awesome!",
       date: "Nov 27, 2024",
       author: "Jane Doe",
@@ -37,15 +37,22 @@ export default function ArticlePage() {
 
   // Access the article using the `id` from the URL
   const article = articleData[parseInt(id)];
-
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    console.log("hii");
+    navigate(-1); // Navigate back to the previous page
+  };
   return (
-    <Article
-      img={article.img}
-      title={article.title}
-      date={article.date}
-      author={article.author}
-      source={article.source}
-      description={article.description}
-    />
+    <div>
+      <Article
+        img={article.img}
+        title={article.title}
+        date={article.date}
+        author={article.author}
+        source={article.source}
+        description={article.description}
+      />
+      <button onClick={handleGoBack}>Go Back</button>
+    </div>
   );
 }

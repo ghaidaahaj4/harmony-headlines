@@ -1,0 +1,39 @@
+.article {
+  height: 57vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding-right: 5vw;
+  overflow-y: scroll;
+}
+
+.article-img {
+  width: 90vw;
+  height: 35vh;
+  margin-top: 2vh;
+  object-fit: scale-down;
+  display: block;
+  align-self: center;
+}
+
+.article-description {
+  width: 90vw;
+  overflow-wrap: normal;
+  white-space: normal;
+}
+button {
+  align-self: center;
+  border-radius: 10vh;
+  width: 25vh;
+  height: 6vh;
+  text-align: center;
+  cursor: pointer;
+  padding: 1vh 0;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: rgba(128, 173, 240, 0.6);
+  color: rgb(20, 53, 104);
+}

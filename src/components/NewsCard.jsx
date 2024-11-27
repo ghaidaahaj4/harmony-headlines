@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./NewsCard.css"; // Import the external CSS file
+import "./styles/NewsCard.css";
 
 export default function NewsCard({ img, title, date, author, source, id }) {
   return (

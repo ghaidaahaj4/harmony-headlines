@@ -1,0 +1,7 @@
+html {
+  background-color: rgba(202, 200, 200, 0.301);
+  width: 100vw;
+  height: 100vh;
+  padding: 0 2vw;
+  overflow-x: hidden;
+}

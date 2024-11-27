@@ -1,0 +1,31 @@
+ul {
+  background-color: rgba(192, 192, 192, 0.355);
+  border-radius: 10vh;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 80vw;
+  justify-content: space-evenly;
+  overflow-x: scroll;
+  padding-left: 0;
+}
+
+li {
+  border-radius: 10vh;
+
+  width: 25vh;
+  text-align: center;
+  cursor: pointer;
+  padding: 1vh 0;
+  transition: background-color 0.3s ease;
+}
+
+li.selected {
+  background-color: rgba(128, 173, 240, 0.6);
+  color: rgb(20, 53, 104);
+}
+
+li:hover {
+  background-color: rgba(128, 173, 240, 0.249);
+}
