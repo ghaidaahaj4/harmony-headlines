@@ -12,7 +12,6 @@ export default function Article({
   return (
     <div className="article">
       <img src={img} alt={title} className="article-img" />
-
       <h1 className="article-title">{title}</h1>
       <div className="article-content">
         <p className="article-details">
