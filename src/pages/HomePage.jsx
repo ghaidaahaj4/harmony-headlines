@@ -4,13 +4,12 @@ import Header from "../components/Header";
 import "./Home.css";
 
 const HomePage = () => {
-  const [currentFeed, setCurrentFeed] = useState("tesla"); // State for the selected feed
+  const [currentFeed, setCurrentFeed] = useState("tesla");
 
   return (
     <div className="home">
-      {/* Pass setCurrentFeed as a prop to Header */}
       <Header setCurrentFeed={setCurrentFeed} />
-      {/* Pass the current feed to NewsCardList */}
+
       <NewsCardList feed={currentFeed} />
     </div>
   );

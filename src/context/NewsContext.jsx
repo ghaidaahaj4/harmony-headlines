@@ -35,6 +35,7 @@ export function NewsProvider({ children }) {
   const [params, setParams] = useState({
     q: "tesla",
     from: "2024-10-28",
+    language: "en",
     sortBy: "publishedAt",
     pageSize: 10,
   });

@@ -10,6 +10,7 @@ export default function Article({
   source,
   description,
 }) {
+  console.log(img);
   return (
     <div className="article">
       <img src={img || defaultImg} className="article-img" />
