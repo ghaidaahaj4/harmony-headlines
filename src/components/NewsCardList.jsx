@@ -1,9 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NewsContext } from "../context/NewsContext";
 import NewsCard from "./NewsCard";
 
-export default function NewsCardList() {
-  const { newsData, loading, error } = useContext(NewsContext);
+export default function NewsCardList({ feed }) {
+  const { newsData, loading, error, setParams } = useContext(NewsContext);
+
+  useEffect(() => {
+    if (feed) {
+      setParams({
+        q: feed,
+        from: "2024-10-28",
+        sortBy: "publishedAt",
+      });
+    }
+  }, [feed, setParams]);
 
   if (loading) return <p>Loading news...</p>;
   if (error) return <p>Error loading news: {error}</p>;

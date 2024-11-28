@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "./styles/Header.css";
 
-export default function Header() {
+export default function Header({ setCurrentFeed }) {
   const [date, setDate] = useState(new Date());
   const [selectedItem, setSelectedItem] = useState("Feed");
 
   const handleClick = (item) => {
     setSelectedItem(item);
+    if (setCurrentFeed) {
+      setCurrentFeed(item.toLowerCase());
+    }
   };
 
   return (
@@ -16,10 +19,10 @@ export default function Header() {
 
       <ul>
         <li
-          onClick={() => handleClick("Feed")}
+          onClick={() => handleClick("tesla")}
           className={selectedItem === "Feed" ? "selected" : ""}
         >
-          Feed
+          Tesla
         </li>
         <li
           onClick={() => handleClick("Popular")}
@@ -42,8 +45,8 @@ export default function Header() {
       </ul>
 
       <div>
-        {selectedItem && <h2>You selected: {selectedItem}</h2>}
-        {selectedItem === "Feed" && <p>This is the Feed section.</p>}
+        {/* {selectedItem && <h2>You selected: {selectedItem}</h2>} */}
+        {selectedItem === "tesla" && <p>This is the tesla section.</p>}
         {selectedItem === "Popular" && <p>This is the Popular section.</p>}
         {selectedItem === "Politics" && <p>This is the Politics section.</p>}
         {selectedItem === "Sports" && <p>This is the Sports section.</p>}

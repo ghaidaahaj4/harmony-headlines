@@ -29,6 +29,7 @@ export default function ArticlePage() {
 
   return (
     <div>
+      <button onClick={handleGoBack}>Go Back</button>
       <Article
         img={article.img}
         title={article.title}
@@ -37,7 +38,6 @@ export default function ArticlePage() {
         source={article.source}
         description={article.description}
       />
-      <button onClick={handleGoBack}>Go Back</button>
     </div>
   );
 }
