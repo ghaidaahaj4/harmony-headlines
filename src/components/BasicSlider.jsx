@@ -10,7 +10,7 @@ export default function BasicSlider() {
 
   return (
     <div style={{ width: "300px", margin: "0 auto" }}>
-      <p>{value}</p>
+      <p>current level{value}</p>
       <Slider
         value={value}
         onChange={handleChange}

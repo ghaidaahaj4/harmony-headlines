@@ -2,7 +2,8 @@ import React, { createContext, useState, useEffect } from "react";
 export const NewsContext = createContext();
 
 const url = `https://newsapi.org/v2/everything`;
-
+const currentDate = new Date();
+const formattedDate = currentDate.toISOString().split("T")[0];
 const newsCache = {};
 
 export async function getNews(params) {
@@ -41,7 +42,7 @@ export function NewsProvider({ children }) {
 
   const [params, setParams] = useState({
     q: "tesla",
-    from: "2024-11-30",
+    from: { formattedDate },
     language: "en",
     sortBy: "publishedAt",
     pageSize: 10,
