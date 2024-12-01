@@ -1,5 +1,5 @@
 .article {
-  height: 90vh;
+  height: 85vh;
   width: 90vw;
   display: flex;
   flex-direction: column;
@@ -44,4 +44,7 @@ button {
 button:hover {
   background-color: rgba(128, 173, 240, 0.6);
   color: rgb(20, 53, 104);
+}
+.slider {
+  background-color: aqua;
 }

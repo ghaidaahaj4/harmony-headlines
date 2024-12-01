@@ -3,15 +3,13 @@ import { Link } from "react-router-dom";
 import "./styles/NewsCard.css";
 import defaultImg from "../assets/defult.png";
 
-export default function NewsCard({ img, title, date, author, source, id }) {
+export default function NewsCard({ img, title, date, author, source, index }) {
   return (
     <div className="news-card">
-      <Link to={`/article/${id}`} className="news-card-link">
+      <Link to={`/article/${index}`} className="news-card-link">
         <img src={img || defaultImg} className="article-img" />
-
         <div className="news-card-content">
           <h3 className="news-card-title">{title}</h3>
-
           <p className="news-card-details">
             {author ? (
               <span className="news-card-author">{author}</span>
@@ -28,7 +26,6 @@ export default function NewsCard({ img, title, date, author, source, id }) {
               </>
             )}
           </p>
-
           {source && (
             <p className="news-card-source">
               Source: <span>{source}</span>
