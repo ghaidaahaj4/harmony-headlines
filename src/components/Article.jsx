@@ -13,9 +13,13 @@ export default function Article({
   return (
     <div className="article">
       <img
-        src={img || defaultImg}
+        src={img && img.trim() ? img : defaultImg}
         alt={title || "Default"}
         className="article-img"
+        onError={(e) => {
+          e.target.onerror = null; // Prevent infinite loop
+          e.target.src = defaultImg; // Fallback to default image
+        }}
       />
 
       <h1 className="article-title">{title || "Untitled Article"}</h1>

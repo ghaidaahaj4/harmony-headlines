@@ -6,19 +6,17 @@ import "../components/styles/Article.css";
 import BasicSlider from "../components/BasicSlider";
 
 export default function ArticlePage() {
-  const { id } = useParams(); // Get the ID from the URL
+  const { id } = useParams(); // Get the index from the URL
   const { newsData, loading, error } = useContext(NewsContext);
   const [article, setArticle] = useState(null); // State to store the article
 
   useEffect(() => {
-    // Log the news data and ID to debug
     console.log("News Data:", newsData);
     console.log("ID from URL:", id);
 
     if (newsData.length > 0) {
-      const currentArticle = newsData.find(
-        (item) => String(item.id) === id // Ensure type matches
-      );
+      const currentArticle = newsData[parseInt(id)]; // Use the index to access the article
+      console.log(currentArticle);
       setArticle(currentArticle || null); // Update the state
     }
   }, [id, newsData]);

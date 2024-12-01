@@ -22,10 +22,10 @@ export default function NewsCardList({ feed }) {
 
   return (
     <div className="news-card-list">
-      {newsData.map((news) => (
+      {newsData.map((news, index) => (
         <NewsCard
-          key={news.id || news.title} // Prefer unique keys
-          id={news.id}
+          key={index} // Use the index as the key
+          index={index} // Pass the index as a prop
           img={news.image}
           title={news.title}
           date={news.published_at}
