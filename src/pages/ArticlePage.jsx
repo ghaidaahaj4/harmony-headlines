@@ -4,57 +4,46 @@ import { NewsContext } from "../context/NewsContext";
 import Article from "../components/Article";
 import "../components/styles/Article.css";
 import BasicSlider from "../components/BasicSlider";
-import { processTitleMood } from "../utils/GeminiSetup"; // Import processTitleMood function
 
 export default function ArticlePage() {
-  const { id } = useParams();
+  const { id } = useParams(); // Get the ID from the URL
   const { newsData, loading, error } = useContext(NewsContext);
-  const [moodScore, setMoodScore] = useState(null);
+  const [article, setArticle] = useState(null); // State to store the article
 
   useEffect(() => {
-    if (newsData.length > 0) {
-      const article = newsData[parseInt(id)];
+    // Log the news data and ID to debug
+    console.log("News Data:", newsData);
+    console.log("ID from URL:", id);
 
-      if (article) {
-        processTitleMood(article).then((score) => {
-          console.log(score);
-          setMoodScore(score);
-        });
-      }
+    if (newsData.length > 0) {
+      const currentArticle = newsData.find(
+        (item) => String(item.id) === id // Ensure type matches
+      );
+      setArticle(currentArticle || null); // Update the state
     }
   }, [id, newsData]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  const article = newsData[parseInt(id)];
-
-  if (!article) {
-    return <div>Article not found</div>;
-  }
-
   const navigate = useNavigate();
-  const handleGoBack = () => {
-    navigate(-1);
-  };
+  const handleGoBack = () => navigate(-1); // Go back to the previous page
+
+  // Show loading/error states
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!article) return <div>Article not found</div>;
 
   return (
-    <div>
-      <button onClick={handleGoBack}>Go Back</button>
+    <div className="article-page">
+      <button onClick={handleGoBack} className="back-button">
+        Go Back
+      </button>
       <Article
         img={article.image}
         title={article.title}
-        date={article.date}
-        author={article.author}
-        source={article.source}
-        description={article.description}
+        date={article.date || "Unknown Date"}
+        author={article.author || "Unknown Author"}
+        source={article.source || "Unknown Source"}
+        description={article.description || "No description available."}
       />
-      <div>{moodScore !== null && <p>Mood Score: {moodScore}</p>}</div>
       <BasicSlider />
     </div>
   );

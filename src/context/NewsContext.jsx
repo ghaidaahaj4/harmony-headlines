@@ -5,7 +5,7 @@ const url = `https://newsapi.org/v2/everything`;
 
 const newsCache = {};
 
-export function getNews(params) {
+export async function getNews(params) {
   const access_key = import.meta.env.VITE_MEDIASTACK_API_KEY;
 
   const urlParams = new URLSearchParams({
@@ -13,14 +13,21 @@ export function getNews(params) {
     apiKey: access_key,
   }).toString();
 
-  return fetch(`${url}?${urlParams}`)
-    .then((res) => {
+  return fetch(`${url}?${urlParams}`, {
+    headers: {
+      Accept: "application/json",
+      "User-Agent": "NewsApp/1.0",
+    },
+  })
+    .then(async (res) => {
+      const text = await res.text();
+      console.log("Response status:", res.status);
+      console.log("Response body:", text);
       if (!res.ok) {
         throw new Error(`HTTP error! Status: ${res.status}`);
       }
-      return res.json();
+      return JSON.parse(text);
     })
-    .then((data) => data)
     .catch((err) => {
       console.error("Error fetching news data:", err);
       throw err;
@@ -34,7 +41,7 @@ export function NewsProvider({ children }) {
 
   const [params, setParams] = useState({
     q: "tesla",
-    from: "2024-10-28",
+    from: "2024-11-30",
     language: "en",
     sortBy: "publishedAt",
     pageSize: 10,
