@@ -1,19 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Slider } from "@mui/material";
 
-export default function BasicSlider() {
-  const [value, setValue] = useState(5);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
+export default function BasicSlider({ value, onChange }) {
   return (
     <div style={{ width: "300px", margin: "0 auto" }}>
-      <p>current level{value}</p>
+      <p>Current level: {value}</p>
       <Slider
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         min={0}
         max={10}
         valueLabelDisplay="auto"

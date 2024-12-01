@@ -9,7 +9,6 @@ const HomePage = () => {
   return (
     <div className="home">
       <Header setCurrentFeed={setCurrentFeed} />
-
       <NewsCardList feed={currentFeed} />
     </div>
   );
