@@ -3,7 +3,7 @@ import "./styles/Header.css";
 
 export default function Header({ setCurrentFeed }) {
   const [date, setDate] = useState(new Date());
-  const [selectedItem, setSelectedItem] = useState("Feed");
+  const [selectedItem, setSelectedItem] = useState("tesla");
 
   const handleClick = (item) => {
     setSelectedItem(item);
@@ -20,7 +20,7 @@ export default function Header({ setCurrentFeed }) {
       <ul>
         <li
           onClick={() => handleClick("tesla")}
-          className={selectedItem === "Feed" ? "selected" : ""}
+          className={selectedItem === "tesla" ? "selected" : ""}
         >
           Tesla
         </li>

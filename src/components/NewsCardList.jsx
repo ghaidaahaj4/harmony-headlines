@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { NewsContext } from "../context/NewsContext";
 import NewsCard from "./NewsCard";
-
+const currentDate = new Date();
+const formattedDate = currentDate.toISOString().split("T")[0];
 export default function NewsCardList({ feed }) {
   const { newsData, loading, error, setParams } = useContext(NewsContext);
 
@@ -9,9 +10,7 @@ export default function NewsCardList({ feed }) {
     if (feed) {
       setParams({
         q: feed,
-        from: new Date(new Date().setDate(new Date().getDate() - 7))
-          .toISOString()
-          .split("T")[0],
+        from: { formattedDate },
         sortBy: "publishedAt",
       });
     }
