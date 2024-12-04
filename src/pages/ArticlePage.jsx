@@ -61,7 +61,9 @@ export default function ArticlePage() {
         source={article.source || "Unknown Source"}
         description={article.description || "No description available."}
       />
-
+      <div>
+        
+      </div>
       <BasicSlider
         value={calmnessLevel}
         onChange={(_, newValue) => setCalmnessLevel(newValue)}
