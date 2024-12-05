@@ -2,7 +2,7 @@
 import { createContext, useState, useEffect } from "react";
 export const NewsContext = createContext();
 
-const serverUrl = `http://localhost:5002/NEWS`;
+const serverUrl = `https://llm-whithbackend1-t809.onrender.com/NEWS`;
 
 export function NewsProvider({ children }) {
   const [newsData, setNewsData] = useState([]);
