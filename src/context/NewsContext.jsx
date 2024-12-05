@@ -1,39 +1,8 @@
-import React, { createContext, useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { createContext, useState, useEffect } from "react";
 export const NewsContext = createContext();
 
-const url = `https://newsapi.org/v2/everything`;
-const currentDate = new Date();
-const formattedDate = currentDate.toISOString().split("T")[0];
-const newsCache = {};
-
-export async function getNews(params) {
-  const access_key = import.meta.env.VITE_MEDIASTACK_API_KEY;
-
-  const urlParams = new URLSearchParams({
-    ...params,
-    apiKey: access_key,
-  }).toString();
-
-  return fetch(`${url}?${urlParams}`, {
-    headers: {
-      Accept: "application/json",
-      "User-Agent": "NewsApp/1.0",
-    },
-  })
-    .then(async (res) => {
-      const text = await res.text();
-      console.log("Response status:", res.status);
-      console.log("Response body:", text);
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-      return JSON.parse(text);
-    })
-    .catch((err) => {
-      console.error("Error fetching news data:", err);
-      throw err;
-    });
-}
+const serverUrl = `https://llm-whithbackend1-t809.onrender.com/NEWS`;
 
 export function NewsProvider({ children }) {
   const [newsData, setNewsData] = useState([]);
@@ -42,7 +11,7 @@ export function NewsProvider({ children }) {
 
   const [params, setParams] = useState({
     q: "tesla",
-    from: { formattedDate },
+    from: new Date().toISOString().split("T")[0],
     language: "en",
     sortBy: "publishedAt",
     pageSize: 10,
@@ -53,29 +22,19 @@ export function NewsProvider({ children }) {
       setLoading(true);
       setError(null);
 
-      const cacheKey = JSON.stringify(params);
+      const queryParams = new URLSearchParams(params).toString();
+      const response = await fetch(`${serverUrl}?${queryParams}`);
 
-      if (newsCache[cacheKey]) {
-        console.log("Using cached data for params:", params);
-        setNewsData(newsCache[cacheKey]);
-        return;
+      if (!response.ok) {
+        throw new Error("Failed to fetch news");
       }
 
-      const data = await getNews(params);
-      if (data?.articles) {
-        const formattedArticles = data.articles.slice(0, 10).map((article) => ({
-          author: article.author,
-          title: article.title,
-          description: article.description,
-          sourceName: article.source.name,
-          url: article.url,
-          image: article.urlToImage,
-        }));
+      const data = await response.json();
 
-        newsCache[cacheKey] = formattedArticles;
-        setNewsData(formattedArticles);
+      if (Array.isArray(data) && data.length > 0) {
+        setNewsData(data);
       } else {
-        throw new Error("Invalid response format");
+        setNewsData([]);
       }
     } catch (err) {
       console.error("Error fetching news data:", err);
@@ -91,7 +50,13 @@ export function NewsProvider({ children }) {
 
   return (
     <NewsContext.Provider
-      value={{ newsData, loading, error, setParams, refetch: fetchNews }}
+      value={{
+        newsData,
+        loading,
+        error,
+        setParams,
+        refetch: fetchNews,
+      }}
     >
       {children}
     </NewsContext.Provider>

@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import { Link } from "react-router-dom";
 import "./styles/NewsCard.css";
 import defaultImg from "../assets/defult.png";
@@ -7,7 +8,11 @@ export default function NewsCard({ img, title, date, author, source, index }) {
   return (
     <div className="news-card">
       <Link to={`/article/${index}`} className="news-card-link">
-        <img src={img || defaultImg} className="article-img" />
+        <img
+          src={img || defaultImg}
+          alt={title || "News Image"}
+          className="article-img"
+        />
         <div className="news-card-content">
           <h3 className="news-card-title">{title}</h3>
           <p className="news-card-details">
@@ -28,7 +33,7 @@ export default function NewsCard({ img, title, date, author, source, index }) {
           </p>
           {source && (
             <p className="news-card-source">
-              Source: <span>{source}</span>
+              Source: <span>{source.name || source}</span>
             </p>
           )}
         </div>
