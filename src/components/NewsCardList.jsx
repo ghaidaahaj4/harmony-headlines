@@ -8,7 +8,7 @@ const formattedDate = currentDate.toISOString().split("T")[0];
 
 export default function NewsCardList({ feed }) {
   const { newsData, loading, error, setParams } = useContext(NewsContext);
-  newsData.map((news, index) => console.log(typeof index));
+
   // Debugging: Log the whole newsData to inspect its structure
   console.log("newsData:", newsData);
 

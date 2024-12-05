@@ -1,12 +1,13 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import {
-  ClerkProvider,
   SignedIn,
   SignedOut,
   UserProfile,
   SignIn,
   SignUp,
+  SignOutButton,
+  SignInButton,
 } from "@clerk/clerk-react";
 import HomePage from "./pages/HomePage";
 import ArticlePage from "./pages/ArticlePage";
@@ -19,6 +20,7 @@ export default function App() {
       <div>
         <SignedIn>
           <UserProfile />
+          <SignOutButton />
           <NewsProvider>
             <Routes>
               <Route path="/" element={<HomePage />} />
@@ -29,7 +31,7 @@ export default function App() {
 
         <SignedOut>
           <SignIn />
-          <SignUp />
+          <SignInButton className="custom-signin-button" />
         </SignedOut>
       </div>
     </Router>
