@@ -9,8 +9,8 @@ export default function NewsCard({ img, title, date, author, source, index }) {
     <div className="news-card">
       <Link to={`/article/${index}`} className="news-card-link">
         <img
-          src={img || defaultImg} // Optional chaining for `img`
-          alt={title || "News Image"} // Add alt text for accessibility
+          src={img || defaultImg}
+          alt={title || "News Image"}
           className="article-img"
         />
         <div className="news-card-content">

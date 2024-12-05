@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+/* eslint-disable react/prop-types */
+// Import useNavigate for navigation
 import "./styles/Article.css";
 import defaultImg from "../assets/defult.png";
 

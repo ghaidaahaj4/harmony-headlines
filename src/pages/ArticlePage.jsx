@@ -1,12 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { NewsContext } from "../context/NewsContext";
 import Article from "../components/Article";
 import "../components/styles/Article.css";
 import BasicSlider from "../components/BasicSlider";
 import { changeMood } from "../utils/GeminiSetup";
-
+import { useUser } from "@clerk/clerk-react";
 export default function ArticlePage() {
+  const { isLoaded, user } = useUser();
+
+  if (!isLoaded) {
+    // Handle loading state however you like
+    return null;
+  }
   const { id } = useParams();
   const { newsData, loading, error } = useContext(NewsContext);
   const [article, setArticle] = useState(null);
@@ -58,18 +64,19 @@ export default function ArticlePage() {
         title={article.title}
         date={article.date || "Unknown Date"}
         author={article.author || "Unknown Author"}
-        source={article.source || "Unknown Source"}
+        source={article.source?.name || "Unknown Source"}
         description={article.description || "No description available."}
       />
-      <div>
-        
-      </div>
-      <BasicSlider
-        value={calmnessLevel}
-        onChange={(_, newValue) => setCalmnessLevel(newValue)}
-      />
-
-      <button onClick={handleMoodChange}>Update Mood</button>
+      {user?.publicMetadata.role === "admin" && (
+        <div>
+          {" "}
+          <BasicSlider
+            value={calmnessLevel}
+            onChange={(_, newValue) => setCalmnessLevel(newValue)}
+          />
+          <button onClick={handleMoodChange}>Update Mood</button>
+        </div>
+      )}
     </div>
   );
 }
